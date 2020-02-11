@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<launch>
+  <include file="$(find robot_eyes)/launch/minimal.launch"/>
+
+  <node name="rviz" pkg="rviz" type="rviz" output="screen" args="-d '$(find robot_eyes)/config/layout.rviz'"/>
+  <node name="foveation_calculator" pkg="robot_eyes" type="foveation_calculator.py" output="screen"/>
+  <node name="vision_optical_flow" pkg="robot_eyes" type="vision_optical_flow.py" output="screen"/>
+  </launch>

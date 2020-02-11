@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<robot name="dobot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:property name="deg2rad" value="${3.1415/180}" />
+
+  <xacro:macro name="eye_visual">
+    <!-- draw an eyeball -->
+    <visual>
+      <geometry>
+	<sphere radius="0.03"/>
+      </geometry>
+      <material name="white">
+	<color rgba="1 1 1 1"/>
+      </material>
+    </visual>
+    <visual>
+      <origin xyz="0.012 0 0"/>
+      <geometry>
+	<sphere radius="0.02"/>
+      </geometry>
+      <material name="black">
+	<color rgba="0 0 0 1"/>
+      </material>
+    </visual>
+  </xacro:macro>
+
+  <link name="eye_base"></link>
+  
+  <link name="eye_dummy"></link>
+  
+  <link name="eye_l">
+    <xacro:eye_visual/>
+  </link>
+
+  <link name="eye_r">
+    <xacro:eye_visual/>
+  </link>
+
+  <link name="camera"/>
+  <joint name="camera" type="fixed">
+    <parent link="eye_base"/>
+    <child link="camera"/>
+    <origin xyz="0 0 0"/>
+  </joint>
+
+  <joint name="eye_pitch" type="revolute">
+    <parent link="eye_base"/>
+    <child link="eye_dummy"/>
+    <origin xyz="0 0 0.05"/>
+    <axis xyz="0 1 0"/>
+    <limit lower="${-40*deg2rad}" upper="${40*deg2rad}" effort="1" velocity="1"/>
+  </joint>
+  
+  <joint name="eye_lyaw" type="revolute">
+    <parent link="eye_dummy"/>
+    <child link="eye_l"/>
+    <origin xyz="0 0.05 0"/>
+    <axis xyz="0 0 1"/>
+    <limit lower="${-40*deg2rad}" upper="${40*deg2rad}" effort="1" velocity="1"/>
+  </joint>
+  
+  <joint name="eye_ryaw" type="revolute">
+    <parent link="eye_dummy"/>
+    <child link="eye_r"/>
+    <origin xyz="0 -0.05 0"/>
+    <axis xyz="0 0 1"/>
+    <limit lower="${-40*deg2rad}" upper="${40*deg2rad}" effort="1" velocity="1"/>
+  </joint>
+
+</robot>

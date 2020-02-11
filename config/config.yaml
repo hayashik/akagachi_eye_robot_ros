@@ -1,0 +1,5 @@
+arduino_port: "/dev/ttyUSB0"
+camera_info:
+  name: "ELP_170"
+  height: 480
+  width: 640
