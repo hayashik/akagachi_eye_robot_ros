@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>robot_eyes</name>
+  <name>akagachi_demo</name>
   <version>0.0.0</version>
-  <description>The robot_eyes package</description>
+  <description>The akagachi_demo package</description>
 
   <maintainer email="you@yourdomain.tld">Your Name</maintainer>
   <license>BSD</license>

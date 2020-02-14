@@ -36,7 +36,7 @@ TODO
 place this repository in /src directory of your catkin workspace, and run `catkin_make`.
 Set the arduino_port parameter in config/config.yaml to the port of your Arduino.
 ```bash
-roslaunch robot_eyes manual_control.launch
+roslaunch akagachi_demo manual_control.launch
 ```
 ## Producting robot
 ### CAD data

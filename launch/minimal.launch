@@ -1,7 +1,0 @@
-<?xml version="1.0"?>
-<launch>
-  <rosparam command="load" file="$(find robot_eyes)/config/config.yaml" />
-  <param name="robot_description" command="xacro --inorder '$(find robot_eyes)/model/eyes.urdf.xacro'"/>
-  <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher" />
-  <node name="arduino" pkg="robot_eyes" type="arduino.py" output="screen"/>
-</launch>

@@ -168,7 +168,7 @@ if __name__ == "__main__":
         width = 480
         height = 640
     print("camera name:{}\theight:{}\twidth:{}".format(camera_name, height, width))
-    with open("{}/calibration_param/{}.json".format(rospack.get_path("robot_eyes"), camera_name, ".json")) as fp:
+    with open("{}/calibration_param/{}.json".format(rospack.get_path("akagachi_demo"), camera_name, ".json")) as fp:
         params = json.load(fp)
     proj = np.array(params['camera_matrix'])
     print("camera projection matrix\n{}".format(proj))
