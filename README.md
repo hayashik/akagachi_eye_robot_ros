@@ -15,7 +15,7 @@ Dockerfile is avairable.
   - OS: Ubuntu 16.04 LTS or 18.04 LTS
   - Python 3.7
   - Opencv >= 3
-  - [Dlib](http://dlib.net/) 19.18
+  - [Dlib](http://dlib.net/) 19.18 # now under development
 
 ### sketch/sketch.ino
 Edit the pin assignments according to your setup, and write this sketch to Arduino.
@@ -27,8 +27,8 @@ Edit the pin assignments according to your setup, and write this sketch to Ardui
 #### scripts/arduino.py
 ROS node for communication with Arduino. Listens to /joint_states ROS topic for commands to send to Arduino.
 
-#### scripts/vision.py
-TODO
+#### scripts/vision_optical_flow.py
+ROS node for detection by the optical flow.
 
 
 
@@ -44,10 +44,10 @@ These CAD data of this repository were designed using `Fusion 360`. You may make
 
 ### Akagachi versions
 - [x] **1-A** : Simple and compact eye robot. Using brush servos direct drive. 
-- [ ] **1-B** : Simple eye robot. Using brushless servos linkage.  
-- [ ] **1-C** : Display eye robot.s
+- [ ] **1-B** : Simple eye robot. Using brushless servos linkage.    # now under development
+- [ ] **1-C** : Display eye robot.  # now under development
 
-### Enabled device
+### Enabled IoT device
 - [x] [Tinker Board S](https://www.asus.com/Single-Board-Computer/Tinker-Board/) and Armbian Bionic 4.4y
 - [x] Raspberry Pi 3 Model B+ and Ubuntu Mate 18.04
 
