@@ -5,6 +5,7 @@ This repository contains the source code of ROS, a parametric 3d CAD.
 This component is written in Python and ROS package. 
 CAD files for Robotic eye system are also available.  
 Our vision is to contribute for diverse group interasted in the social cues of eyes.
+Hardware details are [here](https://github.com/hayashik/akagachi_eye_robot_hardware).
 
 ## Software
 ### Installing on Ubuntu 16.04, 18.04 and ROS kinetic, melodic
