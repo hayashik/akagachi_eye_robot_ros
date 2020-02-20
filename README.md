@@ -1,16 +1,16 @@
 # 'Akagachi' - Open source robot eye component
-This project is in active and an eye componet for HRI studies.
+This project is in active development to be used as an eye component for HRI studies.
 Akagachi means soulful eyes in archaic Japanese.
-This repository contains the source code of ROS, a parametric 3d CAD.
-This component is written in Python and ROS package. 
+This repository contains a sample ROS package (akagachi_demo/) and an Arduino sketch (arduino_sketch/).
+The ROS package is written in Python.
 CAD files for Robotic eye system are also available.  
-Our vision is to contribute for diverse group interasted in the social cues of eyes.
+Our vision is to contribute to diverse groups interested in the social cues of eyes.
 Hardware details are [here](https://github.com/hayashik/akagachi_eye_robot_hardware).
 
 ## Software
 ### Installing on Ubuntu 16.04, 18.04 and ROS kinetic, melodic
 This packages have been developed and checked on ROS kinetic and melodic. The below settings is recommended.
-Dockerfile is avairable.
+Dockerfile is available.
 
 - ROS [Kinetic](http://wiki.ros.org/kinetic) or [Melodic](http://wiki.ros.org/melodic)
   - OS: Ubuntu 16.04 LTS or 18.04 LTS
@@ -18,7 +18,7 @@ Dockerfile is avairable.
   - Opencv >= 3
   - [Dlib](http://dlib.net/) 19.18 # now under development
 
-### sketch/sketch.ino
+### arduino_sketch/arduino_sketch
 Edit the pin assignments according to your setup, and write this sketch to Arduino.
 
 - Arduino IDE 1.8.10
@@ -40,7 +40,7 @@ Set the arduino_port parameter in config/config.yaml to the port of your Arduino
 roslaunch akagachi_demo manual_control.launch
 ```
 ## Producting robot
-### CAD data
+### [CAD data](https://github.com/hayashik/akagachi_eye_robot_hardware)
 These CAD data of this repository were designed using `Fusion 360`. You may make any changes to the `.step` files by any 3D CAD software. If you only want to print our drives then the `.stl` files are all you need.
 
 ### Akagachi versions
