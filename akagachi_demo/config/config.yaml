@@ -1,6 +1,6 @@
-arduino_port: "/dev/ttyUSB0"
+arduino_port: "/dev/ttyACM0"
 camera_info:
   name: "BSW20KM11BK"
   width: 1280
   height: 720
-  distance: 1000
+  distance: 1

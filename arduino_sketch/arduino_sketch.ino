@@ -1,4 +1,4 @@
-#include <Servo.h>
+#include <VarSpeedServo.h>
 
 #define MESSAGE_RECEIVE_LENGTH 4 // length of message  PC -> Arduino
 #define MESSAGE_SEND_LENGTH 3 // length of message  Arduino -> PC
@@ -11,9 +11,9 @@
 #define LOWER_LIMIT 90-40
 #define UPPER_LIMIT 90+40
 
-Servo ryaw_servo;
-Servo lyaw_servo;
-Servo pitch_servo;
+VarSpeedServo ryaw_servo;
+VarSpeedServo lyaw_servo;
+VarSpeedServo pitch_servo;
 
 byte input;
 
@@ -120,8 +120,10 @@ void send_serial(){
 }
 void loop() {
   // put your main code here, to run repeatedly:
-  ryaw_servo.write(ryaw);
-  lyaw_servo.write(lyaw);
-  pitch_servo.write(pitch);
+  ryaw_servo.write(ryaw, 255, false);
+  lyaw_servo.write(lyaw, 255, false);
+  pitch_servo.write(pitch, 255, false);
+  //delay(15);
+  
   //send_serial();
 }
