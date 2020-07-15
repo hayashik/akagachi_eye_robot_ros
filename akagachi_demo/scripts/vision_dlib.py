@@ -70,7 +70,10 @@ class DlibFaceDetector:
             return overlayedImage, None
 
         #For speeding up, cascade detect faces.
-        faces = face_cascade.detectMultiScale(gray_image, scaleFactor=1.1, minNeighbors=5, minSize=(10, 10))
+        faces = face_cascade.detectMultiScale(gray_image, scaleFactor=1.1, minNeighbors=3, minSize=(100, 100))
+
+        if len(faces) < 1:
+            faces = PROFILE_FACE_CASCADE.detectMultiScale(gray_image, scaleFactor=1.1, minNeighbors=3, minSize=(100, 100))
 
         # target face is just one
         if len(faces) == 1:
@@ -93,7 +96,10 @@ class DlibFaceDetector:
                 self.pre_pos = center_pos
             else:
                 center_pos = self.pre_pos
-                
+        else :
+            center_pos = self.pre_pos
+
+
         return overlayedImage, center_pos
 
     def eye_point(self, img, parts, left=True):
@@ -155,7 +161,6 @@ class DlibFaceDetector:
         cariculate the center of the input image.
         '''
         moments = cv2.moments(gray_img, False)
-        print(moments)
         try:
             return int(moments['m10'] / moments['m00']), int(moments['m01'] / moments['m00'])
         except:
@@ -209,11 +214,13 @@ if __name__ == "__main__":
         camera_name = rospy.get_param("/camera_info/name")
         width = rospy.get_param("/camera_info/width")
         height = rospy.get_param("/camera_info/height")
+        distance = rospy.get_param("/camera_info/distance")
     except KeyError:
         print("ROS param for vision.py not found, so using default values....")
         camera_name = "BSW20KM11BK"
         width = 1280
         height = 720
+        distance = 10
     print("camera name:{}\theight:{}\twidth:{}".format(camera_name, height, width))
     with open("{}/calibration_param/{}.json".format(rospack.get_path("akagachi_demo"), camera_name, ".json")) as fp:
         params = json.load(fp)
@@ -243,8 +250,8 @@ if __name__ == "__main__":
         if center is not None or firstFlag:
             if firstFlag:
                 center = np.array([width/2, height/2])
-            point3D = imgPoint_to_space_point(center, inv_proj)
-            tfBroadcaster.sendTransform(point3D, tf.transformations.quaternion_from_euler(0,0,0), rospy.Time.now(), "/focus", "/camera")
+            point3D = imgPoint_to_space_point(center, inv_proj, distance)
+            tfBroadcaster.sendTransform(point3D, tf.transformations.quaternion_from_euler(0, 0, 0), rospy.Time.now(), "/focus", "/camera")
 
         cv2.flip(overlayedImage, 0)
         cv2.imshow('detection_results', overlayedImage)
