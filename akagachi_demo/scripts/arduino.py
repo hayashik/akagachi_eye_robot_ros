@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 import rospy
 from sensor_msgs.msg import JointState
+import numpy as np
 import serial
 import atexit
 import struct
@@ -39,16 +40,25 @@ def set_eye(pos, val):
     pos: either "eye_lyaw", "eye_ryaw" or "eye_pitch"
     val: in radians
     '''
-    val = int(val * 180.0 / 3.14)  # convert to degrees
+    print("val: {}".format(val))
+    val = int(np.sign(val) * (np.pi - abs(val)) * 180.0 / np.pi)  # convert to degrees
     val = max(min(val, 40), -40)  # constrain between -40 ~ 40
-    val += 90  # data is between 50 ~ 130
+    #val = -1 * val
+    #val += 90  # data is between 50 ~ 130
     global eye_angles
     if pos == "eye_lyaw":
+        val += 90
         eye_angles[0] = int(val)
+        #print("eye_lyaw_{}".format(val))
     elif pos == "eye_ryaw":
+        val += 90
         eye_angles[1] = int(val)
+        #print("eye_ryaw_{}".format(val))
     elif pos == "eye_pitch":
+        val = -1 * val
+        val += 90
         eye_angles[2] = int(val)
+        #print("eye_pitch_{}".format(val))
 
 def get_bytearray():
     '''
