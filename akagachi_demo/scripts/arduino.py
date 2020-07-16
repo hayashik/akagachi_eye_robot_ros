@@ -40,7 +40,7 @@ def set_eye(pos, val):
     pos: either "eye_lyaw", "eye_ryaw" or "eye_pitch"
     val: in radians
     '''
-    print("val: {}".format(val))
+    #print("val: {}".format(val))
     val = int(np.sign(val) * (np.pi - abs(val)) * 180.0 / np.pi)  # convert to degrees
     val = max(min(val, 40), -40)  # constrain between -40 ~ 40
     #val = -1 * val
@@ -55,7 +55,6 @@ def set_eye(pos, val):
         eye_angles[1] = int(val)
         #print("eye_ryaw_{}".format(val))
     elif pos == "eye_pitch":
-        val = -1 * val
         val += 90
         eye_angles[2] = int(val)
         #print("eye_pitch_{}".format(val))
