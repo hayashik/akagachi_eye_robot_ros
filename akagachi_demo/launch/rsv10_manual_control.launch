@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<launch>
+  <include file="$(find akagachi_demo)/launch/rsv10_minimal.launch"/>
+  
+
+  <node pkg="joint_state_publisher" type="joint_state_publisher" name="joint_state_publisher" output="screen">
+    <param name="use_gui" value="true"/>
+  </node>
+  <node name="rviz" pkg="rviz" type="rviz" output="screen" args="-d '$(find akagachi_demo)/config/layout.rviz'"/>
+</launch>

@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <launch>
-  <include file="$(find akagachi_demo)/launch/minimal.launch"/>
+  <include file="$(find akagachi_demo)/launch/rcservo_minimal.launch"/>
 
   <node name="rviz" pkg="rviz" type="rviz" output="screen" args="-d '$(find akagachi_demo)/config/layout.rviz'"/>
   <node name="foveation_calculator" pkg="akagachi_demo" type="foveation_calculator.py" output="screen"/>
