@@ -2,6 +2,6 @@
 <launch>
   <rosparam command="load" file="$(find akagachi_demo)/config/config.yaml" />
   <param name="robot_description" command="xacro --inorder '$(find akagachi_demo)/model/eyes.urdf.xacro'"/>
-  <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher" />
+  <!--node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher" /-->
   <node name="arduino" pkg="akagachi_demo" type="arduino.py" output="screen"/>
 </launch>

@@ -31,7 +31,6 @@ USB_BAUDRATE = 115200
 SERVO_NUM = 4
 debug = False
 ORG_PARAM = rospy.get_param("/servo_org_list")
-
 print(ORG_PARAM[0])
 
 '''
