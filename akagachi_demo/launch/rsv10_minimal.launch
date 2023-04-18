@@ -6,4 +6,5 @@
   <node name="rsv10_eye_control" pkg="akagachi_demo" type="rsv10_eye_control.py" respawn="true" output="screen">
       <param name="port" value="$(arg port)" />
   </node>
+  <remap from="/joint_states" to="/rsv10_command"/>
 </launch>

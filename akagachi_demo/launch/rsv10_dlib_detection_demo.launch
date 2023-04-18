@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<launch>
+  <!--remap from="/joint_states" to="/rsv10_command"/-->
+  <include file="$(find akagachi_demo)/launch/rsv10_minimal.launch"/>
+
+  <node name="rviz" pkg="rviz" type="rviz" output="screen" args="-d '$(find akagachi_demo)/config/layout.rviz'"/>
+  <node name="foveation_calculator" pkg="akagachi_demo" type="foveation_calculator.py" output="screen"/>
+  <node name="vision_dlib" pkg="akagachi_demo" type="vision_dlib.py" output="screen"/>
+</launch>

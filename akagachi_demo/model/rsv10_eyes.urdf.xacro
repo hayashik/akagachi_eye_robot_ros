@@ -38,7 +38,7 @@
   <link name="eyelid">
     <visual>
       <geometry>
-        <mesh filename="package://blink_robot/mesh/1B_eyelid.stl"/>
+        <mesh scale="0.0013 0.0013 0.0013"  filename="package://blink_robot/mesh/1B_eyelid.stl"/>
       </geometry>
       <material name="blue">
         <color rgba="0 0 0.7 1"/>
@@ -82,7 +82,7 @@
   <joint name="eyelid_joint" type="revolute">
     <parent link="eye_r"/>
     <child link="eyelid"/>
-    <origin xyz="0 -0.05 0"/>
+    <origin xyz="0 0 0"/>
     <axis xyz="0 0 1"/>
     <limit lower="${-40*deg2rad}" upper="${40*deg2rad}" effort="1" velocity="1"/>
   </joint>

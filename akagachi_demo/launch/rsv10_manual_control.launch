@@ -1,9 +1,8 @@
 <?xml version="1.0"?>
 <launch>
   <arg name="gui" default="true" />
-  <include file="$(find akagachi_demo)/launch/rsv10_minimal.launch"/>
   <remap from="/joint_states" to="/rsv10_command"/>
+  <include file="$(find akagachi_demo)/launch/rsv10_minimal.launch"/>
   <node if="$(arg gui)" name="joint_state_publisher_gui" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui" />
   <node name="rviz" pkg="rviz" type="rviz" output="screen" args="-d '$(find akagachi_demo)/config/layout.rviz'"/>
-
 </launch>
