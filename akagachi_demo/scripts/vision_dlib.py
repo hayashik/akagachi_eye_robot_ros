@@ -86,6 +86,8 @@ class DlibFaceDetector:
             face_parts = dlib_face_landmarks_predictor(image, face).parts()
 
             center_pos = self.get_middle_eyes(image, face_parts)
+            self.blink_state_publisher(self.getting_blink(face_parts))
+            #print("blink it now!")
 
             # if you need the LMS, use here
             #for i in face_parts:
@@ -98,6 +100,7 @@ class DlibFaceDetector:
                 center_pos = self.pre_pos
         else :
             center_pos = self.pre_pos
+
 
 
         return overlayedImage, center_pos
@@ -173,6 +176,55 @@ class DlibFaceDetector:
         if abs(y0 - y1) < 10:
             return True
         return False
+    
+
+    def getting_blink(self, parts):
+        '''
+        '''
+        blink_flug = False
+
+        left_eye_ear = self.calc_ear(parts[42:48])
+        right_eye_ear = self.calc_ear(parts[36:42])
+
+        #print('left_eye_ear: {}, right_eye_ear: {}'.format(left_eye_ear, right_eye_ear))
+
+        if (left_eye_ear + right_eye_ear) < 0.40:
+            blink_flug = True
+        else:
+            blink_flug = False
+        
+        return blink_flug
+
+
+    def calc_ear(self, eye):
+        '''
+        '''
+        landmark_array = np.array([(p.x, p.y) for p in eye])
+
+        #print('check eye parts: {}'.format(landmark_array))
+
+        A = np.linalg.norm(landmark_array[1]-landmark_array[5])
+        B = np.linalg.norm(landmark_array[2]-landmark_array[4])
+        C = np.linalg.norm(landmark_array[0]-landmark_array[3])        
+        eye_ear = (A + B) / (2.0 * C)
+        #print(eye_ear)
+        return round(eye_ear, 3)
+    
+
+    def blink_state_publisher(self, flug):
+        '''
+        '''
+        pub = rospy.Publisher('blink_states', String, queue_size=10)
+
+        #print("published blinking")
+        if(flug):
+            msg = "blinking"
+        else:
+            msg = "opening"
+
+        pub.publish(msg) 
+    
+
 
 def imgPoint_to_space_point(imgPoint, inv_proj, dist=1):
     '''
@@ -182,6 +234,7 @@ def imgPoint_to_space_point(imgPoint, inv_proj, dist=1):
     space_point = np.dot(inv_proj, imgPoint)
     space_point *= dist
     return (space_point[2], -space_point[0], -space_point[1])
+
 
 def cameraLoop(c_width, c_height):
     '''

@@ -5,4 +5,5 @@
   <node name="rviz" pkg="rviz" type="rviz" output="screen" args="-d '$(find akagachi_demo)/config/layout.rviz'"/>
   <node name="foveation_calculator" pkg="akagachi_demo" type="foveation_calculator.py" output="screen"/>
   <node name="vision_dlib" pkg="akagachi_demo" type="vision_dlib.py" output="screen"/>
+  <node name="blinkstate_publisher" pkg="akagachi_demo" type="blinkstate_publisher.py" output="screen"/>
 </launch>

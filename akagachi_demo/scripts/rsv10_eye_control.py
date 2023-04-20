@@ -102,7 +102,12 @@ class futaba_state:
         val: in radians
         '''
         # convert to degrees
-        val = -1 * int(val * 180.0 / 3.14) * 10
+
+        #print('val_input: {}'.format(val))
+        #val = -1 * int(val * 180.0 / np.pi)
+        val = int(np.sign(val) * (np.pi - abs(val)) * 180.0 / np.pi)  # convert to degrees
+        #val = max(min(val, 40), -40)  # constrain between -40 ~ 40
+        #print('val_calced: {}'.format(val))
 
         if pos == "eye_lyaw":
             val += self.servo_org[1]
@@ -145,9 +150,9 @@ class futaba_state:
         '''
         # convert to degrees
 
-        if (pos == "eyelid_joint" and val == 1):
-            self.rs.target_position(4, self.servo_max[3], 8)
-        elif (pos == "eyelid_joint" and val == 0):
+        if (pos == "blink" and val == 1):
+            self.rs.target_position(4, self.servo_org[3] , 8)
+        elif (pos == "blink" and val == 0):
             self.rs.target_position(4, self.servo_org[3], 8)
         else:
             print('as argument "pos", please put in "blink"')
@@ -177,7 +182,7 @@ def callback(msg):
         elif(msg.name[i] == "eyelid_joint"):
             state.set_eye(msg.name[i], msg.position[i])
         elif(msg.name[i] == "blink"):
-            state.set_natural_blink(msg.name[i], msg.position[i])
+            state.set_blink(msg.name[i], msg.position[i])
 
 def callback_exp_msg(data):
     '''

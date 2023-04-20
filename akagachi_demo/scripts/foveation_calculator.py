@@ -21,6 +21,8 @@ def eye(pub, trans_l, trans_r):
     js.name.append("eye_pitch")
     js.position.append(-np.arctan2(trans_l[2], trans_l[0]))
 
+    #print('clsulator: {} {}'.format(trans_l, trans_r))
+
     #global pub
     pub.publish(js)
 
