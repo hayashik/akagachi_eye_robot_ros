@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 import json
 from threading import Thread
 from imutils import face_utils
@@ -20,7 +20,7 @@ SET_DRAW_DENSITY = 1
 SET_THINNING = 6
 SET_EXPAND = 300
 ROS_PATH = roslib.packages.get_pkg_dir('akagachi_demo')
-CV2_PATH = "/usr/local/lib/python3.6/dist-packages/cv2/data/"
+CV2_PATH = "/usr/local/lib/python3.8/dist-packages/cv2/data/"
 FACE_CASCADE_PATH = CV2_PATH + '/haarcascade_frontalface_alt2.xml'
 PROFILE_FACE_CASCADE_PATH = CV2_PATH + '/haarcascade_profileface.xml'
 EYE_CASCADE_PATH = CV2_PATH + '/haarcascade_eye.xml'
@@ -87,8 +87,7 @@ class DlibFaceDetector:
 
             center_pos = self.get_middle_eyes(image, face_parts)
             self.blink_state_publisher(self.getting_blink(face_parts))
-            #print("blink it now!")
-
+            
             # if you need the LMS, use here
             #for i in face_parts:
             #    cv2.circle(overlayedImage, (i.x, i.y), 3, (255, 0, 0), -1)
@@ -101,7 +100,7 @@ class DlibFaceDetector:
         else :
             center_pos = self.pre_pos
 
-
+        #print("center_pos: {}, pre_pos: {}".format(center_pos, self.pre_pos))
 
         return overlayedImage, center_pos
 
@@ -156,7 +155,7 @@ class DlibFaceDetector:
         if (center_posl is None) or (center_posr is None):
             return None
         
-        center_pos = ((center_posl[0] + center_posr[0])/2, (center_posl[1] + center_posr[1])/2)
+        center_pos = (int((center_posl[0] + center_posr[0])/2), int((center_posl[1] + center_posr[1])/2))
         return center_pos
 
     def get_center(self, gray_img):

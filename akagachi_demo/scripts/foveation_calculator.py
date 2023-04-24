@@ -1,4 +1,4 @@
-#! /usr/bin/env python
+#! /usr/bin/env python3
 '''
 This script calculates how the eye should be moved in order to "look" at some point.
 - uses arctan2 to calculate the angles to turn the eyes in order to look at the /focus frame.

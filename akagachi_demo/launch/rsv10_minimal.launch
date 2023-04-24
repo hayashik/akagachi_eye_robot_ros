@@ -3,7 +3,8 @@
   <arg name="port" default="/dev/ttyUSB0"/>
   <rosparam command="load" file="$(find akagachi_demo)/config/rsv10_no1_config.yaml" />
   <param name="robot_description" command="xacro --inorder '$(find akagachi_demo)/model/rsv10_eyes.urdf.xacro'"/>
-  <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher" />
+  <!--node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher" /-->
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
   <node name="rsv10_eye_control" pkg="akagachi_demo" type="rsv10_eye_control.py" respawn="true" output="screen">
       <param name="port" value="$(arg port)" />
   </node>
