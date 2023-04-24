@@ -1,10 +1,5 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# This module provides a class that controls the serial servo motor manufactured by Futaba Corp.
-# ver1.40716
-# This module has been tested on python ver.2.6.6
-# It need pySerial(http://pyserial.sourceforge.net/)
-# (C) 2012 Matsuda Hiroaki
 
 import serial
 import binascii
